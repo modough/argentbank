@@ -51,6 +51,18 @@ body {
   color: #42b983;
 }
 
+.main-nav-right {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  justify-content: space-between;
+}
+
+.main-nav-right .username {
+  font-size: 1.2rem;
+  color: #052f1c;
+}
+
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;

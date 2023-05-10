@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Layout from "../components/Layout"
 
 function SignInPage() {
@@ -20,9 +21,9 @@ function SignInPage() {
                             <input type="checkbox" id="remember-me" />
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
-                        <a href="./user.html">
+                        <Link to="/user/:userId">
                             <button className="sign-in-button">Sign In</button>
-                        </a>
+                        </Link>
                     </form>
                 </section>
             </main>
