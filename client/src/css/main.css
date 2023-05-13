@@ -5,7 +5,9 @@ html {
   text-align: center;
   color: #2c3e50;
 }
-
+* {
+  list-style-type: none;
+}
 body {
   margin: 0;
   display: flex;
@@ -289,6 +291,37 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+}
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  gap: 50px;
+  background-image: url("../assets/img/bank-tree.jpeg");
+  background-position: 0 -250px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#error-page h1 {
+  font-size: 180px;
+  color: #00bc77;
+  margin-bottom: 0;
+}
+#error-page .error-message {
+  font-size: 50px;
+  color: white;
+}
+#error-page .homepage a {
+  text-decoration: none;
+  font-size: 30px;
+
+  color: white;
+  cursor: pointer;
+}
+#error-page .homepage a:hover {
+  color: #00bc77;
 }
 
 @media (min-width: 720px) {
