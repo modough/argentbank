@@ -1,7 +1,10 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 
 function SignInPage() {
+
+    const [email, setEmail] = useState("")
     return (
 
         <main className="main bg-dark">
@@ -11,7 +14,7 @@ function SignInPage() {
                 <form>
                     <div className="input-wrapper">
                         <label htmlFor="email">Email</label>
-                        <input type="text" id="email" />
+                        <input type="email" id="email" />
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
@@ -25,6 +28,7 @@ function SignInPage() {
                         <button className="sign-in-button">Sign In</button>
                     </Link>
                 </form>
+
             </section>
         </main>
 
