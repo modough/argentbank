@@ -22,7 +22,7 @@ const authSlice = createSlice({
                 state.loading = false
                 state.user = action.payload
                 state.error = null
-                state.firstName = action.meta.arg.email.slice(0, 4)
+                state.firstName = action.payload.body.firstName
             })
             .addCase(userData.rejected, (state, action) => {
                 state.loading = false

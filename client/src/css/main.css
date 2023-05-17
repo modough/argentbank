@@ -18,7 +18,9 @@ body {
 .main {
   flex: 1;
 }
-
+.fa {
+  padding: 5px;
+}
 .bg-dark {
   background-color: #12002b;
 }
