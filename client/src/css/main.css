@@ -218,7 +218,10 @@ body {
   padding: 5px;
   font-size: 1.2rem;
 }
-
+.error-alert {
+  color: red;
+  padding: 5px;
+}
 .footer {
   display: flex;
   justify-content: center;
