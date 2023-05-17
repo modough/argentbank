@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom"
 import Logo from "../assets/img/argentBankLogo.png"
-
+import { Logout } from '../features/authSliceReducer'
 import { useSelector } from 'react-redux'
 
 
 
 function Header() {
-
     const userData = useSelector((state) => state.userReducer);
     console.log(userData)
-
-
 
     return (
         <nav className="main-nav">
@@ -25,8 +22,15 @@ function Header() {
             <div className="main-nav-right">
                 <h1 className="username">{userData.firstName}</h1>
                 <Link to='/signin' className="main-nav-item" >
-                    <i className="fa fa-user-circle"></i>
-                    {userData.firstName !== null ? "Logout" : "Sign In"}
+                    {userData.firstName !== null ?
+                        <span>
+                            <i className="fa fa-user-circle"></i>
+                            Logout
+                        </span> :
+                        <span>
+                            <i className="fa fa-user-circle"></i>
+                            Sign in
+                        </span>}
                 </Link>
             </div>
         </nav>
