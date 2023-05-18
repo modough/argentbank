@@ -8,13 +8,11 @@ import Input from "../components/input"
 
 
 function SignInPage() {
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { error, loading } = useSelector((state) => state.userReducer)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     const handleSignin = async (e) => {
         e.preventDefault()
         let userInfos = {
@@ -30,8 +28,8 @@ function SignInPage() {
             }
         })
     }
-    return (
 
+    return (
         <main className="main bg-dark">
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
@@ -47,7 +45,6 @@ function SignInPage() {
                 </form>
             </section>
         </main>
-
     )
 }
 
