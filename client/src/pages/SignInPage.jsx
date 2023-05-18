@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { userData } from "../features/fetchData"
+import Input from "../components/input"
 
 
 
@@ -36,18 +37,9 @@ function SignInPage() {
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
                 <form >
-                    <div className="input-wrapper">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email" value={email || ''} onChange={(e) => setEmail(e.target.value)} />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" value={password || ''} onChange={(e) => setPassword(e.target.value)} />
-                    </div>
-                    <div className="input-remember">
-                        <input type="checkbox" id="remember-me" />
-                        <label htmlFor="remember-me">Remember me</label>
-                    </div>
+                    <Input className="input-wrapper" title="Email" value={email} id="email" event={(e) => setEmail(e.target.value)} />
+                    <Input className="input-wrapper" title="Password" value={password} id="password" event={(e) => setPassword(e.target.value)} />
+                    <Input className="input-remember" title="Remember me" id="checkbox" />
                     <button className="sign-in-button" onClick={handleSignin}>
                         {loading ? 'Loading...' : 'Sign In'}
                     </button>

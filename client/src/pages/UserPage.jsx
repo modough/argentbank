@@ -1,12 +1,15 @@
 import Account from "../components/Account"
+import { useSelector } from 'react-redux'
 
 
 function UserPage() {
-    return (
 
+    const userData = useSelector((state) => state.userReducer);
+    console.log(userData)
+    return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />Tony Jarvis!</h1>
+                <h1>Welcome back<br />{`${userData.firstName} ${userData.lastName}`}</h1>
                 <button className="edit-button">Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>

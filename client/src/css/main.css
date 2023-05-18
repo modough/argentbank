@@ -199,6 +199,8 @@ body {
 
 .input-remember {
   display: flex;
+  width: 100%;
+  margin-left: 46%;
 }
 
 .input-remember label {

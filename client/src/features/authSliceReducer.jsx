@@ -4,35 +4,37 @@ import { userData } from "./fetchData";
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        user: null,
+        token: null,
         error: null,
         loading: false,
         firstName: null,
+        lastName: null,
 
     },
     reducers: {
         logout: (state) => {
             state.firstName = null;
-            localStorage.removeItem('user/loginUser');
+            state.token = null;
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(userData.pending, (state) => {
                 state.loading = true;
-                state.user = null;
+                state.token = null;
                 state.error = null
             })
             .addCase(userData.fulfilled, (state, action) => {
                 console.log(action)
                 state.loading = false
-                state.user = action.payload
+                state.token = action.payload.body.token
                 state.error = null
                 state.firstName = action.payload.body.firstName
+                state.lastName = action.payload.body.lastName
             })
             .addCase(userData.rejected, (state, action) => {
                 state.loading = false
-                state.user = null;
+                state.token = null;
 
                 if (action.error.message === 'Request failed with status code 400') {
                     state.error = 'Access denied ! , Invalid Credentials';

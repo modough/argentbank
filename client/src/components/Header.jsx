@@ -23,15 +23,17 @@ function Header() {
             <div className="main-nav-right">
                 <h1 className="username">{userData.firstName}</h1>
                 <Link to='/signin' className="main-nav-item" >
-                    {userData.firstName !== null ?
-                        <span onClick={() => dispatch(logout())}>
-                            <i className="fa fa-user-circle"></i>
-                            Logout
-                        </span> :
-                        <span>
-                            <i className="fa fa-user-circle"></i>
-                            Sign in
-                        </span>}
+                    {
+                        userData.firstName !== null ?
+                            <span onClick={() => dispatch(logout())}>
+                                <i className="fa fa-user-circle"></i>
+                                Logout
+                            </span> :
+                            <span>
+                                <i className="fa fa-user-circle"></i>
+                                Sign in
+                            </span>
+                    }
                 </Link>
             </div>
         </nav>
