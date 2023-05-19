@@ -37,7 +37,7 @@ const authSlice = createSlice({
                 state.token = null;
 
                 if (action.error.message === 'Request failed with status code 400') {
-                    state.error = 'Access denied ! , Invalid Credentials';
+                    state.error = 'Access denied !, Invalid Credentials';
                 } else {
                     state.error = action.error.message
                 }

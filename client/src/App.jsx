@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import MainPage from './pages/MainPage'
+import LandingPage from './pages/LandingPage'
 import SignInPage from './pages/SignInPage'
 import ErrorPage from './pages/error/ErrorPage'
 import UserPage from './pages/UserPage'
@@ -13,8 +13,8 @@ function App() {
             <Header />
             <main className='container content'>
                 <Routes>
-                    <Route path='/' element={<MainPage />} />
-                    <Route path='/signin' element={<SignInPage />} />
+                    <Route path='/' element={<LandingPage />} />
+                    <Route path='/login' element={<SignInPage />} />
                     <Route path='/profile' element={<UserPage />} />
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>

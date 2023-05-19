@@ -1,33 +1,49 @@
 import Account from "../components/Account"
 import { useSelector } from 'react-redux'
+import { userPageData } from "../utils/mockData";
+import { Fragment } from "react";
+import SignInPage from "./SignInPage";
 
 
 function UserPage() {
     const { firstName, lastName } = useSelector((state) => state.userReducer);
+    let userDetails
+    userPageData?.find((user) => {
+        if (user.firstName === firstName && user.lastName === lastName) {
+            userDetails = user.accountDetails
+        }
+        return userDetails
+    })
+    console.log(userDetails)
 
     return (
-        <main className="main bg-dark">
-            <div className="header">
-                <h1>Welcome back<br />{`${firstName} ${lastName}`}</h1>
-                <button className="edit-button">Edit Name</button>
-            </div>
-            <h2 className="sr-only">Accounts</h2>
-            <Account
-                title='Argent Bank Checking (x8349)'
-                amount='$2,082.79'
-                description='Available Balance'
-            />
-            <Account
-                title='Argent Bank Savings (x6712)'
-                amount='$10,929.42'
-                description='Available Balance'
-            />
-            <Account
-                title='Argent Bank Credit Card (x8349))'
-                amount='$184.30'
-                description='Current Balance'
-            />
-        </main>
+        <Fragment>
+            {
+                userDetails ?
+                    <main className="main bg-dark">
+                        <div className="header">
+                            <h1>Welcome back<br />{`${firstName} ${lastName}`}</h1>
+                            <button className="edit-button">Edit Name</button>
+                        </div>
+                        <h2 className="sr-only">Accounts</h2>
+                        <Account
+                            title={userDetails.checking.title}
+                            amount={userDetails.checking.amount}
+                            description={userDetails.checking.description}
+                        />
+                        <Account
+                            title={userDetails.savings.title}
+                            amount={userDetails.savings.amount}
+                            description={userDetails.savings.description}
+                        />
+                        <Account
+                            title={userDetails.creditCard.title}
+                            amount={userDetails.creditCard.amount}
+                            description={userDetails.creditCard.description}
+                        />
+                    </main> : <SignInPage />
+            }
+        </Fragment>
     )
 }
 

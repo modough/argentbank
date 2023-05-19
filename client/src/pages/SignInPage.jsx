@@ -35,13 +35,29 @@ function SignInPage() {
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
                 <form >
-                    <Input className="input-wrapper" title="Email" value={email} id="email" event={(e) => setEmail(e.target.value)} />
-                    <Input className="input-wrapper" title="Password" value={password} id="password" event={(e) => setPassword(e.target.value)} />
-                    <Input className="input-remember" title="Remember me" id="checkbox" />
+                    <Input
+                        className="input-wrapper"
+                        title="Email"
+                        value={email}
+                        id="email"
+                        event={(e) => setEmail(e.target.value)}
+                    />
+                    <Input
+                        className="input-wrapper"
+                        title="Password"
+                        value={password}
+                        id="password"
+                        event={(e) => setPassword(e.target.value)}
+                    />
+                    <Input
+                        className="input-remember"
+                        title="Remember me"
+                        id="checkbox"
+                    />
                     <button className="sign-in-button" onClick={handleSignin}>
                         {loading ? 'Loading...' : 'Sign In'}
                     </button>
-                    {error && (<div className="error-alert" role='alert'>{error}</div>)}
+                    <div className="error-alert" role='alert'>{error ? error : ''}</div>
                 </form>
             </section>
         </main>
