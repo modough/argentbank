@@ -9,5 +9,11 @@ export const userData = createAsyncThunk('userData', async (userInfos) => {
     console.log(request)
     const response = await request.data;
     return response;
+})
 
+export const updateUserData = createAsyncThunk('userData', async (userInfos) => {
+    const request = await axios.post(`${hostname}/api/v1/user/profile`, userInfos);
+    console.log(request)
+    const response = await request.data;
+    return response;
 })

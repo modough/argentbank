@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-function Input({ id, title, value, event, className }) {
+function Input({ id, title, value, action, className }) {
     return (
         <div className={className}>
             <label htmlFor={id}>{title}</label>
@@ -7,7 +7,7 @@ function Input({ id, title, value, event, className }) {
                 type={id}
                 id={id}
                 value={value || ''}
-                onChange={event}
+                onChange={action}
             />
         </div>
     )
@@ -15,7 +15,7 @@ function Input({ id, title, value, event, className }) {
 Input.propTypes = {
     title: PropTypes.string,
     value: PropTypes.string,
-    event: PropTypes.func,
+    action: PropTypes.func,
     id: PropTypes.string,
     className: PropTypes.string,
 }

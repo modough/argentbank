@@ -1,49 +1,50 @@
 import Account from "../components/Account"
 import { useSelector } from 'react-redux'
 import { userPageData } from "../utils/mockData";
-import { Fragment } from "react";
-import SignInPage from "./SignInPage";
+import { LayoutAdmin } from "../components/LayoutAdmin";
+
 
 
 function UserPage() {
     const { firstName, lastName } = useSelector((state) => state.userReducer);
     let userDetails
-    userPageData?.find((user) => {
+    userPageData.find((user) => {
         if (user.firstName === firstName && user.lastName === lastName) {
-            userDetails = user.accountDetails
+            userDetails = user?.accountDetails
         }
         return userDetails
     })
     console.log(userDetails)
 
     return (
-        <Fragment>
-            {
-                userDetails ?
-                    <main className="main bg-dark">
-                        <div className="header">
-                            <h1>Welcome back<br />{`${firstName} ${lastName}`}</h1>
-                            <button className="edit-button">Edit Name</button>
-                        </div>
-                        <h2 className="sr-only">Accounts</h2>
-                        <Account
-                            title={userDetails.checking.title}
-                            amount={userDetails.checking.amount}
-                            description={userDetails.checking.description}
-                        />
-                        <Account
-                            title={userDetails.savings.title}
-                            amount={userDetails.savings.amount}
-                            description={userDetails.savings.description}
-                        />
-                        <Account
-                            title={userDetails.creditCard.title}
-                            amount={userDetails.creditCard.amount}
-                            description={userDetails.creditCard.description}
-                        />
-                    </main> : <SignInPage />
-            }
-        </Fragment>
+
+        <LayoutAdmin>
+            <main className="main bg-dark">
+                <div className="header">
+                    <h1>Welcome back<br />{`${firstName} ${lastName}`}</h1>
+                    <button className="edit-button">Edit Name</button>
+                </div>
+                <h2 className="sr-only">Accounts</h2>
+                <Account
+                    title={userDetails.checking.title}
+                    amount={userDetails.checking.amount}
+                    description={userDetails.checking.description}
+                />
+                <Account
+                    title={userDetails.savings.title}
+                    amount={userDetails.savings.amount}
+                    description={userDetails.savings.description}
+                />
+                <Account
+                    title={userDetails.creditCard.title}
+                    amount={userDetails.creditCard.amount}
+                    description={userDetails.creditCard.description}
+                />
+            </main>
+        </LayoutAdmin>
+
+
+
     )
 }
 

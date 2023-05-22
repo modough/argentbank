@@ -14,6 +14,7 @@ const authSlice = createSlice({
     reducers: {
         logout: (state) => {
             state.firstName = null;
+            state.lastName = null;
             state.token = null;
         }
     },
