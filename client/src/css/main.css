@@ -171,6 +171,23 @@ body {
 .main.bg-dark {
   padding: 170px;
 }
+.main.bg-dark h1 {
+  margin-bottom: 0;
+}
+.nameInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 70px;
+  margin-bottom: 20px;
+}
+.nameInput div > input {
+  height: 20px;
+  font-size: 20px;
+  padding: 10px;
+}
 
 .sign-in-button {
   display: block;

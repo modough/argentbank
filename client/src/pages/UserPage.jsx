@@ -2,8 +2,7 @@ import Account from "../components/Account"
 import { useSelector } from 'react-redux'
 import { userPageData } from "../utils/mockData";
 import { LayoutAdmin } from "../components/LayoutAdmin";
-
-
+import Input from "../components/input";
 
 function UserPage() {
     const { firstName, lastName } = useSelector((state) => state.userReducer);
@@ -17,11 +16,14 @@ function UserPage() {
     console.log(userDetails)
 
     return (
-
         <LayoutAdmin>
             <main className="main bg-dark">
                 <div className="header">
-                    <h1>Welcome back<br />{`${firstName} ${lastName}`}</h1>
+                    <h1>Welcome back</h1>
+                    <div className="nameInput">
+                        <Input value={firstName} />
+                        <Input value={lastName} />
+                    </div>
                     <button className="edit-button">Edit Name</button>
                 </div>
                 <h2 className="sr-only">Accounts</h2>
@@ -42,9 +44,6 @@ function UserPage() {
                 />
             </main>
         </LayoutAdmin>
-
-
-
     )
 }
 

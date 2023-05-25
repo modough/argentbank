@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { userData } from "../features/fetchData"
 import Input from "../components/input"
 
-
-
-
 function SignInPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+
 function FeatureItem({ logo, title, description }) {
     return (
         <div className="feature-item">
