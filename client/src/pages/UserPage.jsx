@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { userPageData } from "../utils/mockData";
 import { LayoutAdmin } from "../components/LayoutAdmin";
 import Input from "../components/input";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 function UserPage() {
     const { firstName, lastName } = useSelector((state) => state.userReducer);
@@ -14,6 +14,7 @@ function UserPage() {
         setUpdate(!update)
     }
     const handleValidate = () => {
+        setUpdate(!update)
     }
     const MODE_ENV = 'development'
     let userDetails
