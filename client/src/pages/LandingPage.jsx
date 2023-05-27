@@ -6,8 +6,6 @@ import FeatureItem from "../components/FeatureItem"
 
 function MainPage() {
     return (
-
-
         <main>
             <div className="hero">
                 <section className="hero-content">
@@ -42,8 +40,6 @@ function MainPage() {
                 />
             </section>
         </main>
-
-
     )
 }
 

@@ -37,14 +37,14 @@ function SignInPage() {
                         title="Email"
                         value={email}
                         id="email"
-                        event={(e) => setEmail(e.target.value)}
+                        action={(e) => setEmail(e.target.value)}
                     />
                     <Input
                         className="input-wrapper"
                         title="Password"
                         value={password}
                         id="password"
-                        event={(e) => setPassword(e.target.value)}
+                        action={(e) => setPassword(e.target.value)}
                     />
                     <Input
                         className="input-remember"

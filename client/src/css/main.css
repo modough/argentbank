@@ -171,19 +171,26 @@ body {
 .main.bg-dark {
   padding: 170px;
 }
-.main.bg-dark h1 {
-  margin-bottom: 0;
+
+.header {
+  height: 200px;
 }
 .nameInput {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
   height: 70px;
   margin-bottom: 20px;
 }
-.nameInput div > input {
+.nameInput .name {
+  display: flex;
+  gap: 20px;
+  margin: 60px;
+  margin: 0 !important;
+}
+.nameInput .name input {
   height: 20px;
   font-size: 20px;
   padding: 10px;
@@ -292,7 +299,8 @@ body {
   flex: 1;
 }
 
-.edit-button {
+.edit-button,
+.validate-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
