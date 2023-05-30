@@ -11,7 +11,7 @@ function Header() {
         dispatch(logout())
         navigate('/')
     }
-    const { firstName } = useSelector((state) => state.userReducer);
+    const { firstName, id } = useSelector((state) => state.userReducer);
     console.log(firstName)
 
     return (
@@ -28,7 +28,7 @@ function Header() {
                 <h1 className="username">{firstName}</h1>
                 <Link to='/login' className="main-nav-item" >
                     {
-                        firstName !== null ?
+                        id !== null ?
                             <span onClick={handleLogout}>
                                 <i className="fa fa-user-circle"></i>
                                 Logout

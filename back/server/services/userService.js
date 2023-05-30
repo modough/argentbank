@@ -58,15 +58,16 @@ module.exports.loginUser = async serviceData => {
     if (!isValid) {
       throw new Error('Password is invalid')
     }
-
+    const Id = user._id
     const token = jwt.sign(
-      { id: user._id },
+      { id: Id },
       process.env.SECRET_KEY || 'default-secret-key',
       { expiresIn: '1d' }
     )
     const firstName = user.firstName
     const lastName = user.lastName
-    return { token, firstName, lastName }
+
+    return { token, firstName, lastName, Id }
   } catch (error) {
     console.error('Error in userService.js', error)
     throw new Error(error)
@@ -83,10 +84,15 @@ module.exports.updateUserProfile = async serviceData => {
         firstName: serviceData.body.firstName,
         lastName: serviceData.body.lastName
       },
+      {
+        useFindAndModify: false
+      },
+
       { new: true }
     )
 
     if (!user) {
+      res.status(404);
       throw new Error('User not found!')
     }
 

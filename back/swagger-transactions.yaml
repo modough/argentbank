@@ -18,9 +18,9 @@ paths:
       summary: User's transactions
       description: Retrieves all the user's transactions in the month
       parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
+        - in: path
+          name: userId
+          description: tyhe user's id
           required: true
           type: string
       produces:
