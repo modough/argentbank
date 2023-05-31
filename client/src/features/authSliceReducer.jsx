@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userData, updateUserData } from "./fetchData";
+import { userData, updateUserData, createAccountData } from "./fetchData";
 
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
     firstName: null,
     lastName: null,
     id: null,
+    success: null,
 }
 const authSlice = createSlice({
     name: 'auth',
@@ -23,15 +24,9 @@ const authSlice = createSlice({
             state.lastName = action.payload.updateLastName
             state.token = action.payload.token
         })
-
     },
     extraReducers: (builder) => {
         builder
-            .addCase(userData.pending, (state) => {
-                state.loading = true;
-                state.token = null;
-                state.error = null
-            })
             .addCase(userData.fulfilled, (state, action) => {
                 console.log(action)
                 state.loading = false
@@ -50,7 +45,23 @@ const authSlice = createSlice({
                     state.error = action.error.message
                 }
             })
-
+            .addCase(createAccountData.fulfilled, (state, action) => {
+                state.error = null
+                state.firstName = action.payload.body.firstName
+                state.lastName = action.payload.body.lastName
+                state.success = action.payload.message
+            })
+            .addCase(createAccountData.rejected, (state, action) => {
+                state.loading = false
+                if (action.succes.message === "User successfully created") {
+                    state.success = 'Account successfully created ! you may now log in !'
+                }
+                if (action.error.message === 'Request failed with status code 400') {
+                    state.error = 'Email already exists';
+                } else {
+                    state.error = action.error.message
+                }
+            })
     }
 })
 export const { logout, updateUser } = authSlice.actions

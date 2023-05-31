@@ -5,6 +5,7 @@ import ErrorPage from './pages/error/ErrorPage'
 import UserPage from './pages/UserPage'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import CreateAccountPage from './pages/CreateAccountPage'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <main className='container content'>
                 <Routes>
                     <Route path='/' element={<LandingPage />} />
+                    <Route path='/signup' element={<CreateAccountPage />} />
                     <Route path='/login' element={<SignInPage />} />
                     <Route path='/profile' element={<UserPage />} />
                     <Route path='*' element={<ErrorPage />} />

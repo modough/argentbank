@@ -19,7 +19,6 @@ export const updateUserData = createAsyncThunk('updateUserData', async (updateIn
     });
     let config = {
         method: 'put',
-        maxBodyLength: Infinity,
         url: 'http://localhost:3001/api/v1/user/profile',
         headers: {
             'Content-Type': 'application/json',
@@ -34,4 +33,35 @@ export const updateUserData = createAsyncThunk('updateUserData', async (updateIn
         .catch((error) => {
             console.log(error);
         });
+})
+
+export const createAccountData = createAsyncThunk('createAccount', async (createInfos) => {
+    const { token, firstName, lastName, email, password } = createInfos
+
+    let data = JSON.stringify({
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "password": password
+    });
+
+    let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://localhost:3001/api/v1/user/signup',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    };
+
+    axios.request(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
 })

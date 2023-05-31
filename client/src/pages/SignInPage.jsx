@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { userData } from "../features/fetchData"
 import Input from "../components/input"
@@ -55,6 +55,9 @@ function SignInPage() {
                         {loading ? 'Loading...' : 'Sign In'}
                     </button>
                     <div className="error-alert" role='alert'>{error ? error : ''}</div>
+                    <Link to='/signup'>
+                        <p className="signup-text">Create Account</p>
+                    </Link>
                 </form>
             </section>
         </main>

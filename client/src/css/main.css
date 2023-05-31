@@ -7,6 +7,7 @@ html {
 }
 * {
   list-style-type: none;
+  text-decoration: none;
 }
 body {
   margin: 0;
@@ -202,7 +203,7 @@ body {
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
-  margin-top: 1rem;
+  margin: 1rem 0;
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
@@ -221,6 +222,13 @@ body {
   font-size: 5rem;
 }
 
+.signup-text {
+  color: #2c3e50;
+  font-weight: 700;
+}
+.signup-text:hover {
+  text-decoration: underline;
+}
 .input-remember {
   display: flex;
   width: 100%;
@@ -246,6 +254,7 @@ body {
   padding: 5px;
   font-size: 1.2rem;
 }
+
 .error-alert {
   color: red;
   padding: 5px;
