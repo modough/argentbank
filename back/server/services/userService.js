@@ -84,10 +84,6 @@ module.exports.updateUserProfile = async serviceData => {
         firstName: serviceData.body.firstName,
         lastName: serviceData.body.lastName
       },
-      {
-        useFindAndModify: false
-      },
-
       { new: true }
     )
 

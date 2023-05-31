@@ -30,7 +30,7 @@ function Header() {
                     {
                         id !== null ?
                             <span onClick={handleLogout}>
-                                <i className="fa fa-user-circle"></i>
+                                <i className="fa fa-sign-out"></i>
                                 Logout
                             </span> :
                             <span>

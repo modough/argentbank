@@ -11,24 +11,27 @@ export const userData = createAsyncThunk('userData', async (userInfos) => {
     return response;
 })
 
-export const updateUserData = createAsyncThunk('updateUserData', async (firstName, lastName, token) => {
-    if (token) {
-        const request = await axios.put(
-            `${hostname}/api/v1/user/profile`,
-            {
-                firstName, lastName
-            },
-            {
-                contentType: 'application/json'
-            },
-            {
-                headers: { authorization: `Bearer ${token}` }
-            },
-            { body: JSON.stringify({ firstName: firstName, lastName: lastName }) }
-
-        );
-        console.log(request)
-        const response = await request.data;
-        return response;
-    }
+export const updateUserData = createAsyncThunk('updateUserData', async (updateInfos) => {
+    const { token, updateFirstName, updateLastName } = updateInfos
+    let data = JSON.stringify({
+        "firstName": updateFirstName,
+        "lastName": updateLastName,
+    });
+    let config = {
+        method: 'put',
+        maxBodyLength: Infinity,
+        url: 'http://localhost:3001/api/v1/user/profile',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        data: data
+    };
+    await axios.request(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 })

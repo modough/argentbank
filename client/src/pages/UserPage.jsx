@@ -27,11 +27,9 @@ function UserPage() {
             updateLastName,
             token
         }
-
         dispatch(updateUser(updateInfos))
         dispatch(updateUserData(updateInfos))
         setUpdate(!update)
-
 
     }
 

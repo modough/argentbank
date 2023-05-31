@@ -21,6 +21,7 @@ const authSlice = createSlice({
             console.log(action)
             state.firstName = action.payload.updateFirstName
             state.lastName = action.payload.updateLastName
+            state.token = action.payload.token
         })
 
     },
