@@ -2,7 +2,8 @@ import { useState } from "react"
 import Input from "../components/input"
 import { useDispatch, useSelector } from "react-redux"
 import { createAccountData } from "../features/fetchData"
-import { useNavigate } from "react-router-dom"
+
+
 
 function CreateAccountPage() {
     const { success, error, loading } = useSelector((state) => state.userReducer)
@@ -11,7 +12,7 @@ function CreateAccountPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+
     const handleSignup = async (e) => {
         e.preventDefault()
         let createInfos = {
@@ -27,9 +28,10 @@ function CreateAccountPage() {
                 setLastName('');
                 setEmail('');
                 setPassword('');
-                navigate('/login')
+
             }
         })
+
     }
 
 

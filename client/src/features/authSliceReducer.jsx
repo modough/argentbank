@@ -47,17 +47,14 @@ const authSlice = createSlice({
             })
             .addCase(createAccountData.fulfilled, (state, action) => {
                 state.error = null
-                state.firstName = action.payload.body.firstName
-                state.lastName = action.payload.body.lastName
-                state.success = action.payload.message
+                if (action.payload.message === "User successfully created") {
+                    state.success = 'Account successfully created ! you may go back to sign in page !'
+                }
             })
             .addCase(createAccountData.rejected, (state, action) => {
                 state.loading = false
-                if (action.succes.message === "User successfully created") {
-                    state.success = 'Account successfully created ! you may now log in !'
-                }
                 if (action.error.message === 'Request failed with status code 400') {
-                    state.error = 'Email already exists';
+                    state.error = 'Email already exists ! Please use another one !';
                 } else {
                     state.error = action.error.message
                 }

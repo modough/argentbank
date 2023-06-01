@@ -13,55 +13,45 @@ export const userData = createAsyncThunk('userData', async (userInfos) => {
 
 export const updateUserData = createAsyncThunk('updateUserData', async (updateInfos) => {
     const { token, updateFirstName, updateLastName } = updateInfos
-    let data = JSON.stringify({
+    const data = JSON.stringify({
         "firstName": updateFirstName,
         "lastName": updateLastName,
     });
-    let config = {
+    const config = {
         method: 'put',
-        url: 'http://localhost:3001/api/v1/user/profile',
+        url: `${hostname}/api/v1/user/profile`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
         data: data
     };
-    await axios.request(config)
-        .then((response) => {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+    const request = await axios.request(config)
+    const response = await request.data
+    console.log(response)
+    return response
 })
 
 export const createAccountData = createAsyncThunk('createAccount', async (createInfos) => {
     const { token, firstName, lastName, email, password } = createInfos
-
-    let data = JSON.stringify({
+    const data = JSON.stringify({
         "firstName": firstName,
         "lastName": lastName,
         "email": email,
         "password": password
     });
-
-    let config = {
+    const config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'http://localhost:3001/api/v1/user/signup',
+        url: `${hostname}/api/v1/user/signup`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
         data: data
     };
-
-    axios.request(config)
-        .then((response) => {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-
+    const request = await axios.request(config)
+    const response = await request.data
+    console.log(response)
+    return response
 })
