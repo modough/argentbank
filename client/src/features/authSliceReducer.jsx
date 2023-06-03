@@ -29,7 +29,7 @@ const authSlice = createSlice({
         builder
             .addCase(userData.fulfilled, (state, action) => {
                 console.log(action)
-                state.loading = false
+                state.loading = true
                 state.token = action.payload.body.token
                 state.error = null
                 state.firstName = action.payload.body.firstName
@@ -46,9 +46,10 @@ const authSlice = createSlice({
                 }
             })
             .addCase(createAccountData.fulfilled, (state, action) => {
+                state.loading = true
                 state.error = null
                 if (action.payload.message === "User successfully created") {
-                    state.success = 'Account successfully created ! you may go back to sign in page !'
+                    state.success = 'Account successfully created ! You may go back to Sign In page !'
                 }
             })
             .addCase(createAccountData.rejected, (state, action) => {

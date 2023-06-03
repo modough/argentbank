@@ -55,11 +55,11 @@ function UserPage() {
                                     <Input value={updateFirstName} action={(e) => setUpdateFirstName(e.target.value)} />
                                     <Input value={updateLastName} action={(e) => setUpdateLastName(e.target.value)} />
                                 </div>
-                                <button className="validate-button" onClick={handleValidate}>Validate</button>
+                                <button className="validate-button" onClick={() => { handleValidate() }}>Validate</button>
                             </div> :
                             <div className="nameInput">
                                 <h1 className="name">{`${firstName} ${lastName}`}</h1>
-                                <button className="edit-button" onClick={handleUpdate}>Edit Name</button>
+                                <button className="edit-button" onClick={() => { handleUpdate() }}>Edit Name</button>
                             </div>
                     }
                 </div>

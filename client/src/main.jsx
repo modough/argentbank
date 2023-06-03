@@ -1,38 +1,39 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import authSliceReducer from './features/authSliceReducer'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import thunk from 'redux-thunk'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
 
 
-
-
-
-
-//ACTION on actions folder
-
-
-// REDUCER on reducer folder
-
+const reducers = combineReducers({
+  userReducer: authSliceReducer
+});
+const persistConfig = {
+  key: 'root',
+  storage
+};
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 //STORE -> GLOBALIZED STATE here 
 const store = configureStore({
-  reducer: {
-    userReducer: authSliceReducer
-  }
+  reducer: persistedReducer,
+  middleware: [thunk]
 })
 
-
-
-//DISPATCH on the components
-
-
+let persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
 )

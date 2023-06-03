@@ -9,7 +9,7 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /transactions/{userId}:
+  /users/{userId}/transactions:
     get:
       security:
         - Bearer: []
@@ -20,7 +20,7 @@ paths:
       parameters:
         - in: path
           name: userId
-          description: tyhe user's id
+          description: user's id
           required: true
           type: string
       produces:
@@ -38,8 +38,6 @@ paths:
           description: No existing transactions on your account..
         "500":
           description: The server has encountered an internal server error. Please try again later.
-
-  /transactions:
     post:
       security:
         - Bearer: []
@@ -72,8 +70,7 @@ paths:
           description: Unauthorized access for this endpoint.
         "500":
           description: The server has encountered an internal server error. Please try again later.
-
-  /transactions/{transactionId}:
+  /users/{userId}/transactions/{transactionId}:
     get:
       security:
         - Bearer: []
@@ -247,42 +244,3 @@ definitions:
       message:
         type: string
         example: User's transaction successfully deleted
-
-  UserTransaction:
-    type: object
-    properties:
-      id:
-        type: number
-        format: integer
-      authorId:
-        type: number
-        format: integer
-      title:
-        type: string
-      description:
-        type: string
-      amount:
-        type: number
-        format: double
-      date:
-        type: string
-      balance:
-        type: number
-        format: double
-
-  UserTransactions:
-    type: array
-    items:
-      $ref: "#/definitions/UserTransaction"
-
-  UserTransactionPayload:
-    properties:
-      userId:
-        type: number
-      title:
-        type: string
-      description:
-        type: string
-      amount:
-        type: number
-        format: double
