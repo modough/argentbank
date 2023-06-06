@@ -90,5 +90,28 @@ export const userPageData = [
                 description: "Current Balance"
             }
         }
+    },
+    {
+        id: '647a22724a190a3d488bde3b',
+        firstName: 'Doctor',
+        lastName: 'Fatalis',
+        accountDetails:
+        {
+            checking: {
+                title: "Argent Bank Checking (x8349)",
+                amount: "$92,001.70",
+                description: "Available Balance"
+            },
+            savings: {
+                title: "Argent Bank Savings (x6712)",
+                amount: "$54,70.90",
+                description: "Available Balance"
+            },
+            creditCard: {
+                title: "Argent Bank Credit Card (x8349)",
+                amount: "$9925.00",
+                description: "Current Balance"
+            }
+        }
     }
 ]

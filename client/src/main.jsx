@@ -4,11 +4,11 @@ import App from './App'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import authSliceReducer from './features/authSliceReducer'
-import { persistReducer } from 'redux-persist'
+import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist'
+
 
 
 const reducers = combineReducers({
