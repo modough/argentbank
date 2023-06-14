@@ -343,7 +343,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/User_Transactions"
-  User_Transaction_POST_Response:
+  User_Transactions_POST_Response:
     type: object
     properties:
       status:
