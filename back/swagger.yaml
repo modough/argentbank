@@ -110,7 +110,7 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
-  /users/transactions:
+  /user/transactions:
     get:
       security:
         - Bearer: []
@@ -171,7 +171,7 @@ paths:
           description: Unauthorized access for this endpoint.
         "500":
           description: The server has encountered an internal server error. Please try again later.
-  /users/transactions/:
+  /user/transaction/:
     get:
       security:
         - Bearer: []
