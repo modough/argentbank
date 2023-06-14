@@ -6,7 +6,6 @@ const hostname = "http://localhost:3001";
 
 export const userData = createAsyncThunk('userData', async (userInfos) => {
     const request = await axios.post(`${hostname}/api/v1/user/login`, userInfos);
-    console.log(request)
     const response = await request.data;
     return response;
 })
@@ -42,7 +41,6 @@ export const createAccountData = createAsyncThunk('createAccount', async (create
     });
     const config = {
         method: 'post',
-        maxBodyLength: Infinity,
         url: `${hostname}/api/v1/user/signup`,
         headers: {
             'Content-Type': 'application/json',

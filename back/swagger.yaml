@@ -110,7 +110,7 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
-  /users/{userId}/transactions:
+  /users/transactions:
     get:
       security:
         - Bearer: []
@@ -119,7 +119,7 @@ paths:
       summary: User's transactions
       description: Retrieves all the user's transactions in the month
       parameters:
-        - in: path
+        - in: body
           name: userId
           description: user's id
           required: true
@@ -157,7 +157,7 @@ paths:
           description: Attach transaction payload
           required: true
           schema:
-            $ref: "#/definitions/UserTransactionPayload"
+            $ref: "#/definitions/User_TransactionPayload"
       produces:
         - application/json
       responses:
@@ -171,7 +171,7 @@ paths:
           description: Unauthorized access for this endpoint.
         "500":
           description: The server has encountered an internal server error. Please try again later.
-  /users/{userId}/transactions/{transactionId}:
+  /users/transactions/:
     get:
       security:
         - Bearer: []
@@ -185,7 +185,7 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - in: path
+        - in: body
           name: transactionId
           description: Attach the transaction's id
           required: true
@@ -228,14 +228,14 @@ paths:
           description: Attach transaction payload
           required: true
           schema:
-            $ref: "#/definitions/UserTransactionPayload"
+            $ref: "#/definitions/User_TransactionPayload"
       produces:
         - application/json
       responses:
         "200":
           description: User transaction details successfully updated
           schema:
-            $ref: "#/definitions/UserTransaction_PUT_Response"
+            $ref: "#/definitions/User_Transaction_PUT_Response"
         "400":
           description: Empty or incorrect fields.
         "401":
@@ -342,8 +342,8 @@ definitions:
       body:
         type: array
         items:
-          $ref: "#/definitions/UserTransactions"
-  User_Transactions_POST_Response:
+          $ref: "#/definitions/User_Transactions"
+  User_Transaction_POST_Response:
     type: object
     properties:
       status:
@@ -354,7 +354,7 @@ definitions:
       body:
         type: array
         items:
-          $ref: "#/definitions/UserTransaction"
+          $ref: "#/definitions/User_Transaction"
   User_Transaction_GET_Response:
     type: object
     properties:
@@ -366,7 +366,7 @@ definitions:
       body:
         type: array
         items:
-          $ref: "#/definitions/UserTransaction"
+          $ref: "#/definitions/User_Transaction_GET_Response"
   User_Transaction_PUT_Response:
     type: object
     properties:
@@ -378,7 +378,7 @@ definitions:
       body:
         type: array
         items:
-          $ref: "#/definitions/UserTransaction"
+          $ref: "#/definitions/User_Transaction"
   User_Transaction_DELETE_Response:
     type: object
     properties:

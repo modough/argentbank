@@ -5,8 +5,9 @@ import { createAccountData } from "../features/fetchData"
 
 
 
+
 function CreateAccountPage() {
-    const { success, error, loading } = useSelector((state) => state.userReducer)
+    const { success, error } = useSelector((state) => state.userReducer)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -47,6 +48,7 @@ function CreateAccountPage() {
                         value={firstName}
                         id="firstname"
                         action={(e) => setFirstName(e.target.value)}
+                        required
                     />
                     <Input
                         className="input-wrapper"
@@ -54,6 +56,7 @@ function CreateAccountPage() {
                         value={lastName}
                         id="lastname"
                         action={(e) => setLastName(e.target.value)}
+                        required
                     />
                     <Input
                         className="input-wrapper"
@@ -61,6 +64,7 @@ function CreateAccountPage() {
                         value={email}
                         id="email"
                         action={(e) => setEmail(e.target.value)}
+                        required
                     />
                     <Input
                         className="input-wrapper"
@@ -68,11 +72,17 @@ function CreateAccountPage() {
                         value={password}
                         id="password"
                         action={(e) => setPassword(e.target.value)}
+                        required
                     />
                     <button className="sign-in-button" onClick={handleSignup}>
-                        {loading ? 'Loading...' : 'Sign Up'}
+                        Sign up
                     </button>
-                    <div className="error-alert" role='alert'>{error ? error : success}</div>
+                    <div className="error-alert" role='alert'>
+                        {error ?
+                            <p className="error">{error}</p> :
+                            <p className="success">{success}</p>
+                        }
+                    </div>
 
                 </form>
             </section>

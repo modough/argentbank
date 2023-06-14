@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import SignInPage from "../pages/SignInPage"
 
 export const LayoutAdmin = ({ children }) => {
-    const { token } = useSelector((state) => state.userReducer)
-    if (!token) {
-        <SignInPage />
+    const { token, firstName, lastName } = useSelector((state) => state.userReducer)
+    if (!token || !firstName || !lastName) {
+        return (
+            <SignInPage />
+        )
     }
     if (token) {
         return (

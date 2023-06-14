@@ -25,7 +25,7 @@ function Header() {
             </Link>
             <div className="main-nav-right">
                 <h1 className="username">{firstName}</h1>
-                {id !== null ?
+                {id && firstName !== null ?
                     <Link to='/' className="main-nav-item">
                         <span onClick={handleLogout}>
                             <i className="fa fa-sign-out"></i>

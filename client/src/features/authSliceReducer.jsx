@@ -39,6 +39,8 @@ const authSlice = createSlice({
             .addCase(userData.rejected, (state, action) => {
                 state.loading = false
                 state.token = null;
+                state.firstName;
+                state.lastName;
                 if (action.error.message === 'Request failed with status code 400') {
                     state.error = 'Access denied !, Invalid Credentials';
                 } else {
@@ -49,16 +51,12 @@ const authSlice = createSlice({
                 state.loading = true
                 state.error = null
                 if (action.payload.message === "User successfully created") {
-                    state.success = 'Account successfully created ! You may go back to Sign In page !'
+                    state.success = 'Account successfully created ! You may return to Sign In page !'
                 }
             })
-            .addCase(createAccountData.rejected, (state, action) => {
+            .addCase(createAccountData.rejected, (state) => {
                 state.loading = false
-                if (action.error.message === 'Request failed with status code 400') {
-                    state.error = 'Email already exists ! Please use another one !';
-                } else {
-                    state.error = action.error.message
-                }
+                state.error = 'Access denied !, Invalid Credentials'
             })
     }
 })

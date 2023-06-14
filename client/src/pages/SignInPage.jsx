@@ -7,7 +7,7 @@ import Input from "../components/input"
 function SignInPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { error, loading } = useSelector((state) => state.userReducer)
+    const { error } = useSelector((state) => state.userReducer)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleSignin = async (e) => {
@@ -22,6 +22,7 @@ function SignInPage() {
                 setEmail('');
                 setPassword('');
                 navigate('/profile')
+
             }
         })
     }
@@ -52,9 +53,11 @@ function SignInPage() {
                         id="checkbox"
                     />
                     <button className="sign-in-button" onClick={handleSignin}>
-                        {loading ? 'Loading...' : 'Sign In'}
+                        Sign In
                     </button>
-                    <div className="error-alert" role='alert'>{error ? error : ''}</div>
+                    <div className="error-alert" role='alert'>
+                        {error ? <p className="error">{error}</p> : ''}
+                    </div>
                     <Link to='/signup'>
                         <p className="signup-text">Create Account</p>
                     </Link>
