@@ -7,7 +7,7 @@ import Input from "../components/input"
 function SignInPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { error } = useSelector((state) => state.userReducer)
+    const { errorSignIn } = useSelector((state) => state.userReducer)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleSignin = async (e) => {
@@ -56,7 +56,7 @@ function SignInPage() {
                         Sign In
                     </button>
                     <div className="error-alert" role='alert'>
-                        {error ? <p className="error">{error}</p> : ''}
+                        {errorSignIn ? <p className="error">{errorSignIn}</p> : ''}
                     </div>
                     <Link to='/signup'>
                         <p className="signup-text">Create Account</p>

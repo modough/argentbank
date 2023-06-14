@@ -7,7 +7,7 @@ import { createAccountData } from "../features/fetchData"
 
 
 function CreateAccountPage() {
-    const { success, error } = useSelector((state) => state.userReducer)
+    const { success, errorRegister } = useSelector((state) => state.userReducer)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -78,8 +78,8 @@ function CreateAccountPage() {
                         Sign up
                     </button>
                     <div className="error-alert" role='alert'>
-                        {error ?
-                            <p className="error">{error}</p> :
+                        {errorRegister ?
+                            <p className="error">{errorRegister}</p> :
                             <p className="success">{success}</p>
                         }
                     </div>

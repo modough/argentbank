@@ -4,7 +4,8 @@ import { userData, updateUserData, createAccountData } from "./fetchData";
 
 const initialState = {
     token: null,
-    error: null,
+    errorSignIn: null,
+    errorRegister: null,
     loading: false,
     firstName: null,
     lastName: null,
@@ -31,7 +32,7 @@ const authSlice = createSlice({
                 console.log(action)
                 state.loading = true
                 state.token = action.payload.body.token
-                state.error = null
+                state.errorSignIn = null
                 state.firstName = action.payload.body.firstName
                 state.lastName = action.payload.body.lastName
                 state.id = action.payload.body.Id
@@ -42,9 +43,9 @@ const authSlice = createSlice({
                 state.firstName;
                 state.lastName;
                 if (action.error.message === 'Request failed with status code 400') {
-                    state.error = 'Access denied !, Invalid Credentials';
+                    state.errorSignIn = 'Access denied !, Invalid Credentials';
                 } else {
-                    state.error = action.error.message
+                    state.errorSignIn = action.error.message
                 }
             })
             .addCase(createAccountData.fulfilled, (state, action) => {
@@ -56,7 +57,7 @@ const authSlice = createSlice({
             })
             .addCase(createAccountData.rejected, (state) => {
                 state.loading = false
-                state.error = 'Access denied !, Invalid Credentials'
+                state.errorRegister = 'Access denied !, Invalid Credentials'
             })
     }
 })
