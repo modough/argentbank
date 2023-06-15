@@ -70,6 +70,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
       produces:
         - application/json
       responses:
@@ -93,6 +94,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
+          type: string
         - in: body
           name: body
           description: Update user profile attributes
@@ -110,173 +112,113 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
-  /user/transactions:
+  /user/{userId}/transactions:
     get:
       security:
         - Bearer: []
       tags:
-        - User Transactions Module
-      summary: User's transactions
-      description: Retrieves all the user's transactions in the month
+        - All user transactions
+      summary: Retrieves all user transactions
+      description: API to retrieve all user month's transactions
       parameters:
-        - in: body
+        - in: path
           name: userId
-          description: user's id
-          required: true
-          type: string
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: User's month transactions successfully recovered
-          schema:
-            $ref: "#/definitions/User_Transactions_GET_Response"
-        "400":
-          description: Empty or incorrect fields.
-        "401":
-          description: Unauthorized access for this endpoint.
-        "404":
-          description: No existing transactions on your account..
-        "500":
-          description: The server has encountered an internal server error. Please try again later.
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - User Transactions Module
-      summary: User's transactions
-      description: Create a transaction
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - in: body
-          name: Transaction payload
-          description: Attach transaction payload
-          required: true
-          schema:
-            $ref: "#/definitions/User_TransactionPayload"
-      produces:
-        - application/json
-      responses:
-        "201":
-          description: User's transaction successfully created
-          schema:
-            $ref: "#/definitions/User_Transactions_POST_Response"
-        "400":
-          description: Empty or incorrect fields.
-        "401":
-          description: Unauthorized access for this endpoint.
-        "500":
-          description: The server has encountered an internal server error. Please try again later.
-  /user/transaction/:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - User Transactions Module
-      summary: User transaction
-      description: Retrieves a specific transaction from the user
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - in: body
-          name: transactionId
-          description: Attach the transaction's id
+          description: "ID of the user that needs to be fetched "
           required: true
           type: integer
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
       produces:
         - application/json
       responses:
         "200":
-          description: User's transaction details successfully retrieved
+          description: successful operation
           schema:
-            $ref: "#/definitions/User_Transaction_GET_Response"
+            $ref: "#/definitions/TransactionsResponse"
         "400":
-          description: Empty or incorrect fields.
-        "401":
-          description: Unauthorized access for this endpoint.
-        "404":
-          description: The transaction does not exist or has been deleted.
+          description: Invalid Fields
         "500":
-          description: The server has encountered an internal server error. Please try again later.
+          description: Internal Server Error
+  /user/{userId}/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User single transaction
+      summary: Retrieves a specific user transaction
+      description: API to retrieve a user's transaction over the current month
+      parameters:
+        - in: path
+          name: userId
+          description: "ID of the user that needs to be fetched "
+          required: true
+          type: integer
+        - in: path
+          name: transactionId
+          description: "ID of the transaction that needs to be fetched "
+          required: true
+          type: integer
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/TransactionResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
     put:
       security:
         - Bearer: []
       tags:
-        - User Transactions Module
-      summary: User transaction
-      description: Update a specific transaction from the user
+        - User single transaction
+      summary: Updates an informative note or a category type from a transaction
+      description: >-
+        API in order to up to date a specific transaction's note or a specific
+        transaction's category type
       parameters:
+        - in: path
+          name: userId
+          description: "ID of the user that needs to be fetched "
+          required: true
+          type: integer
+        - in: path
+          name: transactionId
+          description: "ID of the transaction that needs to be seen "
+          required: true
+          type: integer
         - in: header
           name: Authorization
           description: Attach Bearer JWT token
           required: true
           type: string
-        - in: path
-          name: transactionId
-          description: Attach the transaction's id
-          required: true
-          type: integer
         - in: body
-          name: Transaction payload
-          description: Attach transaction payload
+          name: body
+          description: Value Payload
           required: true
           schema:
-            $ref: "#/definitions/User_TransactionPayload"
+            $ref: "#/definitions/EditTransaction"
       produces:
         - application/json
       responses:
         "200":
-          description: User transaction details successfully updated
+          description: successful operation
           schema:
-            $ref: "#/definitions/User_Transaction_PUT_Response"
+            $ref: "#/definitions/TransactionResponse"
         "400":
-          description: Empty or incorrect fields.
-        "401":
-          description: Unauthorized access for this endpoint.
-        "404":
-          description: The transaction does not exist or has been deleted.
+          description: Invalid Fields
         "500":
-          description: The server has encountered an internal server error. Please try again later.
-    delete:
-      security:
-        - Bearer: []
-      tags:
-        - User Transactions Module
-      summary: User transaction
-      description: Delete a specific transaction from the user
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - in: path
-          name: transactionId
-          description: Attach the transaction's id
-          required: true
-          type: integer
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: User's transaction successfully deleted
-          schema:
-            $ref: "#/definitions/User_Transaction_DELETE_Response"
-        "400":
-          description: Empty or incorrect fields.
-        "401":
-          description: Unauthorized access for this endpoint.
-        "404":
-          description: The transaction does not exist or has already been deleted.
-        "500":
-          description: The server has encountered an internal server error. Please try again later.
+          description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -305,6 +247,72 @@ definitions:
       password:
         type: string
         description: user password
+  LoginResponse:
+    type: object
+    properties:
+      token:
+        type: string
+  UserProfile:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+  TransactionsResponse:
+    type: object
+    properties:
+      response:
+        $ref: "#/definitions/ApiTransactionResponse"
+      body:
+        type: object
+        properties:
+          id:
+            type: integer
+          email:
+            type: string
+          transactions:
+            type: array
+            items:
+              $ref: "#/definitions/Transaction"
+  TransactionResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      body:
+        $ref: "#/definitions/Transaction"
+  Transaction:
+    type: object
+    properties:
+      transactionId:
+        type: integer
+      amount:
+        type: integer
+      date:
+        type: string
+      description:
+        type: string
+      transactionType:
+        type: string
+  EditTransaction:
+    type: object
+    properties:
+      notes:
+        type: string
+      category:
+        type: string
+      tag:
+        type: string
+  ApiTransactionResponse:
+    type: object
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
   ApiResponse:
     type: object
     properties:
@@ -319,71 +327,3 @@ definitions:
             type: string
           email:
             type: string
-  LoginResponse:
-    type: object
-    properties:
-      token:
-        type: string
-  UserProfile:
-    type: object
-    properties:
-      firstName:
-        type: string
-      lastName:
-        type: string
-  User_Transactions_GET_Response:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-        example: User's month transactions successfully recovered
-      body:
-        type: array
-        items:
-          $ref: "#/definitions/User_Transactions"
-  User_Transactions_POST_Response:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-        example: User's transaction successfully created
-      body:
-        type: array
-        items:
-          $ref: "#/definitions/User_Transaction"
-  User_Transaction_GET_Response:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-        example: User's transaction details successfully retrieved
-      body:
-        type: array
-        items:
-          $ref: "#/definitions/User_Transaction_GET_Response"
-  User_Transaction_PUT_Response:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-        example: User transaction details successfully updated
-      body:
-        type: array
-        items:
-          $ref: "#/definitions/User_Transaction"
-  User_Transaction_DELETE_Response:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-        example: User's transaction successfully deleted

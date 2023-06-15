@@ -4,18 +4,20 @@ import { userData, updateUserData, createAccountData } from "./fetchData";
 
 const initialState = {
     token: null,
-    errorSignIn: null,
-    errorRegister: null,
-    loading: false,
     firstName: null,
     lastName: null,
     id: null,
-    success: null,
 }
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
+        createUser: (createAccountData, (state, action) => {
+            state.firstName = action.payload.body.firstName
+            state.lastName = action.payload.body.lastName
+            state.id = action.payload.body._id
+
+        }),
         logout: () => {
             return initialState
         },
@@ -30,36 +32,17 @@ const authSlice = createSlice({
         builder
             .addCase(userData.fulfilled, (state, action) => {
                 console.log(action)
-                state.loading = true
                 state.token = action.payload.body.token
-                state.errorSignIn = null
                 state.firstName = action.payload.body.firstName
                 state.lastName = action.payload.body.lastName
                 state.id = action.payload.body.Id
             })
-            .addCase(userData.rejected, (state, action) => {
-                state.loading = false
+            .addCase(userData.rejected, (state) => {
                 state.token = null;
-                state.firstName;
-                state.lastName;
-                if (action.error.message === 'Request failed with status code 400') {
-                    state.errorSignIn = 'Access denied !, Invalid Credentials';
-                } else {
-                    state.errorSignIn = action.error.message
-                }
-            })
-            .addCase(createAccountData.fulfilled, (state, action) => {
-                state.loading = true
-                state.error = null
-                if (action.payload.message === "User successfully created") {
-                    state.success = 'Account successfully created ! You may return to Sign In page !'
-                }
-            })
-            .addCase(createAccountData.rejected, (state) => {
-                state.loading = false
-                state.errorRegister = 'Access denied !, Invalid Credentials'
+                state.firstName = null;
+                state.lastName = null;
             })
     }
 })
-export const { logout, updateUser } = authSlice.actions
+export const { createUser, logout, updateUser } = authSlice.actions
 export default authSlice.reducer

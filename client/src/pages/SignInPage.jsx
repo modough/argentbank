@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { userData } from "../features/fetchData"
 import Input from "../components/input"
 
 function SignInPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { errorSignIn } = useSelector((state) => state.userReducer)
+    const [error, setError] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleSignin = async (e) => {
@@ -22,7 +22,8 @@ function SignInPage() {
                 setEmail('');
                 setPassword('');
                 navigate('/profile')
-
+            } else {
+                setError('Access denied !, Invalid Credentials');
             }
         })
     }
@@ -56,7 +57,7 @@ function SignInPage() {
                         Sign In
                     </button>
                     <div className="error-alert" role='alert'>
-                        {errorSignIn ? <p className="error">{errorSignIn}</p> : ''}
+                        {error ? <p className="error">{error}</p> : ''}
                     </div>
                     <Link to='/signup'>
                         <p className="signup-text">Create Account</p>

@@ -1,13 +1,16 @@
 import { useState } from "react"
 import Input from "../components/input"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { createAccountData } from "../features/fetchData"
+import { Link } from "react-router-dom"
 
 
 
 
 function CreateAccountPage() {
-    const { success, errorRegister } = useSelector((state) => state.userReducer)
+
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -29,7 +32,9 @@ function CreateAccountPage() {
                 setLastName('');
                 setEmail('');
                 setPassword('');
-
+                setSuccess('Account successfully created ! You may return to Sign In page !')
+            } else {
+                setError('Access denied !, Invalid Credentials');
             }
         })
 
@@ -37,7 +42,7 @@ function CreateAccountPage() {
 
 
     return (
-        <main className="main bg-dark">
+        <main className="main bg-dark create">
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Create Account</h1>
@@ -78,11 +83,14 @@ function CreateAccountPage() {
                         Sign up
                     </button>
                     <div className="error-alert" role='alert'>
-                        {errorRegister ?
-                            <p className="error">{errorRegister}</p> :
-                            <p className="success">{success}</p>
+                        {success ?
+                            <p className="success">{success}</p> :
+                            <p className="error">{error}</p>
                         }
                     </div>
+                    <Link to='/login'>
+                        <p className="signup-text">Sign In</p>
+                    </Link>
 
                 </form>
             </section>

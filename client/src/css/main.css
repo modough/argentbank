@@ -170,8 +170,18 @@ body {
   margin-bottom: 0.5rem;
 }
 .main.bg-dark {
-  padding: 170px;
+  padding: 165px;
 }
+.main.bg-dark.create {
+  padding: 100px;
+}
+@media (min-width: 300px) {
+  .main.bg-dark,
+  .main.bg-dark.create {
+    padding: 100px 20px;
+  }
+}
+
 .header {
   height: 200px;
   color: #fff;
@@ -183,7 +193,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  height: 70px;
+  height: 150px;
   margin-bottom: 20px;
 }
 .nameInput .name {
@@ -192,6 +202,12 @@ body {
   margin: 60px;
   margin: 0 !important;
 }
+@media (max-width: 600px) {
+  .nameInput .name {
+    flex-direction: column;
+  }
+}
+
 .nameInput .name input {
   height: 20px;
   font-size: 20px;
@@ -218,11 +234,9 @@ body {
   margin-top: 3rem;
   padding: 2rem;
 }
-
 .sign-in-icon {
   font-size: 5rem;
 }
-
 .signup-text {
   color: #2c3e50;
   font-weight: 700;
@@ -235,27 +249,22 @@ body {
   width: 100%;
   margin-left: 46%;
 }
-
 .input-remember label {
   margin-left: 0.25rem;
 }
-
 .input-wrapper {
   display: flex;
   flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
 }
-
 .input-wrapper label {
   font-weight: bold;
 }
-
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
 }
-
 .error-alert .error {
   color: red;
   padding: 5px;
@@ -270,12 +279,10 @@ body {
   border-top: 2px solid #ccc;
   padding: 2rem 0 1.5rem;
 }
-
 .footer-text {
   margin: 0;
   padding: 0;
 }
-
 .account {
   display: flex;
   justify-content: space-between;
@@ -290,29 +297,24 @@ body {
   text-align: left;
   margin-bottom: 2rem;
 }
-
 .account-amount {
   margin: 0;
   font-size: 2.5rem;
   font-weight: bold;
 }
-
 .account-amount-description {
   margin: 0;
 }
-
 .account-title {
   margin: 0;
   padding: 0;
   font-size: 1rem;
   font-weight: normal;
 }
-
 .account-content-wrapper {
   width: 100%;
   flex: 1;
 }
-
 .edit-button,
 .validate-button {
   border-color: #00bc77;
@@ -321,7 +323,6 @@ body {
   font-weight: bold;
   padding: 10px;
 }
-
 .transaction-button {
   display: block;
   width: 100%;
@@ -333,7 +334,6 @@ body {
   background-color: #00bc77;
   color: #fff;
 }
-
 #error-page {
   display: flex;
   flex-direction: column;
@@ -341,7 +341,6 @@ body {
   padding-bottom: 50px;
   gap: 80px;
   background-image: url("../assets/img/bank-tree.jpeg");
-  background-position: 0 -290px;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -352,13 +351,12 @@ body {
 }
 #error-page .error-message {
   font-size: 50px;
-  color: white;
+  color: #052f1c;
 }
-
 #error-page .homepage a {
   text-decoration: none;
   font-size: 30px;
-
+  font-weight: 700;
   color: white;
   cursor: pointer;
 }
