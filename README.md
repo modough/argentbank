@@ -12,4 +12,4 @@ http://localhost:3001/api-docs/
 #Frontend:
 Open the frontend directory with 'cd client' command, then type:
 'npm install' command to install all neccessary dependencies.
-Type 'npm run dev' command, this will run the server on port 5173.
+Type 'npm run dev' command, this will run the app on port 5173.
